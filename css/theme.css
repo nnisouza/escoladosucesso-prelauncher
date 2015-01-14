@@ -1,0 +1,19 @@
+.wrapper{
+/*    Usa caminho absoluto na url da imagem*/
+    background-image: url('../img/mark/bg.jpg');
+    background-size: cover;
+}
+
+
+.wrapper .grayTape,
+.wrapper .grayTape form#primalForm input{
+    border-color: #5a8244;
+}
+.wrapper .grayTape .progress h3,
+.wrapper .grayTape form#primalForm label{
+    color: #5a8244;
+}
+.wrapper .thanks,
+.wrapper .grayTape form#primalForm button{
+    background-color: #5a8244;
+}
