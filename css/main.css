@@ -1,4 +1,4 @@
-/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700,800,400italic,500italic,700italic,800italic);
 
 html,
 button,
@@ -91,6 +91,14 @@ textarea {
     left: 0;
     transform: translateY(-50%);
 }
+.wrapper .upper .container .videoH{
+    height: 315px;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
 .wrapper .upper .container .linkH{
     height: 280px;
     width: 50%;
@@ -165,6 +173,36 @@ textarea {
     max-width: 1200px;
     margin: 0 auto;
     
+}
+.progressBar{
+    width: 600px;
+    height: 10px;
+    background: #dfdfdf;
+    margin: 60px auto;
+}
+.progressBar .theBar{
+    background: green;
+    height: 10px;
+    position: relative;
+}
+.progressBar .theBar #incrementor{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid green;
+    text-align: center;
+    position: absolute;
+    right: -15px;
+    top: -13px;
+}
+.progressBar .theBar:after{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -7px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid green;
 }
 .wrapper .grayTape .progress h3{
     font-size: 20px;

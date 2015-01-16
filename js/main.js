@@ -2,6 +2,7 @@ $(document).ready(function() {
     var wrapper = $('.wrapper'),
         upper = $('.upper'),
         leftFX = $('.upper .leftFX'),
+        rightFX = $('.upper .rightFX'),
         leftFX2 = $('.upper .leftFX2'),
         grayTape = $('.grayTape'),
         primalForm = $('#primalForm'),
@@ -17,7 +18,9 @@ $(document).ready(function() {
     
     wrapper.fadeIn('medium');
     leftFX.removeClass('hidden');
+    rightFX.removeClass('hidden');
     leftFX.addClass('fadeInUp animated');
+    rightFX.addClass('fadeInRight animated');
     
     subscribe.click(secondStep);
     
@@ -43,6 +46,19 @@ $(document).ready(function() {
         setTimeout(function() {
             upper.height(uh);
         }, 600);
+        
+        $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {
+            duration: 2000,
+            easing:'linear',
+            step: function() {
+                $('#incrementor').val(Math.floor(this.countNum));
+                $('.theBar').width((Math.floor(this.countNum)  * 2) + '%');
+            },
+            complete: function() {
+                $('#incrementor').val(this.countNum);
+                $('.theBar').width((Math.floor(this.countNum)  * 2) + '%');
+            }
+        });    
         
         return false;
     }
