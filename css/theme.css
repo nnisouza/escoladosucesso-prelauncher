@@ -8,7 +8,8 @@
 .wrapper .grayTape,
 .wrapper .grayTape form#primalForm input,
 .wrapper .grayTape .progress .progressBar .theBar #incrementor,
-.wrapper .grayTape .progress .progressBar .theBar:after{
+.wrapper .grayTape .progress .progressBar .theBar:after,
+.wrapper .upper .container .linkH input#placeCodeHere{
     border-color: #5a8244;
 }
 .wrapper .grayTape .progress h3,
@@ -17,6 +18,11 @@
 }
 .wrapper .thanks,
 .wrapper .grayTape form#primalForm button,
+.wrapper .grayTape .progress .progressBar .theBar #incrementor,
 .wrapper .grayTape .progress .progressBar .theBar{
     background-color: #5a8244;
+}
+
+.wrapper .grayTape form#primalForm svg path{
+    fill: #5a8244;
 }
