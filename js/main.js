@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
     var wrapper = $('.wrapper'),
         upper = $('.upper'),
         leftFX = $('.upper .leftFX'),
@@ -14,13 +14,24 @@ $(document).ready(function() {
         gh = grayTape.height();
         uh = h - gh;
     
-    upper.height(uh);
-    
-    wrapper.fadeIn('medium');
-    leftFX.removeClass('hidden');
-    rightFX.removeClass('hidden');
-    leftFX.addClass('fadeInUp animated');
-    rightFX.addClass('fadeInRight animated');
+    if (h < 768) {
+//        grayTape.css('position', 'relative');
+        upper.height(uh);
+        wrapper.fadeIn('medium');
+        leftFX.removeClass('hidden');
+        rightFX.removeClass('hidden');
+        leftFX.addClass('fadeInLeft animated');
+        rightFX.addClass('fadeInRight animated');
+        
+    } else {
+        
+        wrapper.fadeIn('medium');
+        leftFX.removeClass('hidden');
+        rightFX.removeClass('hidden');
+        leftFX.addClass('fadeInUp animated');
+        rightFX.addClass('fadeInRight animated');
+
+    }
     
     subscribe.click(secondStep);
     
@@ -48,15 +59,15 @@ $(document).ready(function() {
         }, 600);
         
         $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {
-            duration: 2000,
+            duration: 4000,
             easing:'linear',
             step: function() {
                 $('#incrementor').val(Math.floor(this.countNum));
-                $('.theBar').width((Math.floor(this.countNum)  * 2) + '%');
+                $('.theBar').width($('#incrementor').data('qtd') * 2 + '%');
             },
             complete: function() {
                 $('#incrementor').val(this.countNum);
-                $('.theBar').width((Math.floor(this.countNum)  * 2) + '%');
+//                $('.theBar').width($('#incrementor').data('qtd')');
             }
         });    
         

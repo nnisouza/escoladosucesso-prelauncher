@@ -6,7 +6,9 @@
 
 
 .wrapper .grayTape,
-.wrapper .grayTape form#primalForm input{
+.wrapper .grayTape form#primalForm input,
+.wrapper .grayTape .progress .progressBar .theBar #incrementor,
+.wrapper .grayTape .progress .progressBar .theBar:after{
     border-color: #5a8244;
 }
 .wrapper .grayTape .progress h3,
@@ -14,6 +16,7 @@
     color: #5a8244;
 }
 .wrapper .thanks,
-.wrapper .grayTape form#primalForm button{
+.wrapper .grayTape form#primalForm button,
+.wrapper .grayTape .progress .progressBar .theBar{
     background-color: #5a8244;
 }

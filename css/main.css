@@ -75,6 +75,7 @@ textarea {
 }
 .wrapper .upper{
     width: 100%;
+    overflow: hidden;
 }
 .wrapper .upper .container{
     width: 90%;
@@ -97,6 +98,10 @@ textarea {
     position: absolute;
     top: 50%;
     right: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 .wrapper .upper .container .linkH{
@@ -174,36 +179,6 @@ textarea {
     margin: 0 auto;
     
 }
-.progressBar{
-    width: 600px;
-    height: 10px;
-    background: #dfdfdf;
-    margin: 60px auto;
-}
-.progressBar .theBar{
-    background: green;
-    height: 10px;
-    position: relative;
-}
-.progressBar .theBar #incrementor{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 3px solid green;
-    text-align: center;
-    position: absolute;
-    right: -15px;
-    top: -13px;
-}
-.progressBar .theBar:after{
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -7px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid green;
-}
 .wrapper .grayTape .progress h3{
     font-size: 20px;
     font-weight: 700;
@@ -212,6 +187,37 @@ textarea {
     text-align: center;
     padding-top: 15px;
     font-family: "Alegreya Sans";
+}
+.wrapper .grayTape .progress .progressBar{
+    width: 600px;
+    height: 10px;
+    background: #dfdfdf;
+    margin: 60px auto;
+}
+.wrapper .grayTape .progress .progressBar .theBar{
+    height: 10px;
+    position: relative;
+    width: 0;
+    transition: all 4s linear 0s;
+}
+.wrapper .grayTape .progress .progressBar .theBar #incrementor{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid;
+    text-align: center;
+    position: absolute;
+    right: -15px;
+    top: -13px;
+}
+.wrapper .grayTape .progress .progressBar .theBar:after{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -7px;
+    border-left: 10px solid transparent!important;
+    border-right: 10px solid transparent!important;
+    border-bottom: 10px solid;
 }
 .wrapper .grayTape form#primalForm{
     padding-top: 25px;
@@ -275,9 +281,6 @@ textarea {
 }
 .wrapper.firstStep .grayTape{
     height: 200px;
-}
-.wrapper.secondStep .grayTape{
-    height: 295px;
 }
 .wrapper .thanks{
     width: 100%;
