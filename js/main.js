@@ -1,37 +1,26 @@
-$(window).load(function() {
-    var wrapper = $('.wrapper'),
-        upper = $('.upper'),
-        leftFX = $('.upper .leftFX'),
-        rightFX = $('.upper .rightFX'),
-        leftFX2 = $('.upper .leftFX2'),
-        grayTape = $('.grayTape'),
-        primalForm = $('#primalForm'),
-        progress = $('.progress'),
-        subscribe = $('.grayTape button#subscribe'),
-        thanks = $('.thanks'),
-        w = wrapper.width(),
-        h = wrapper.height(),
-        gh = grayTape.height();
-        uh = h - gh;
-    
-    if (h < 768) {
-//        grayTape.css('position', 'relative');
-        upper.height(uh);
-        wrapper.fadeIn('medium');
-        leftFX.removeClass('hidden');
-        rightFX.removeClass('hidden');
-        leftFX.addClass('fadeInLeft animated');
-        rightFX.addClass('fadeInRight animated');
-        
-    } else {
-        
-        wrapper.fadeIn('medium');
-        leftFX.removeClass('hidden');
-        rightFX.removeClass('hidden');
-        leftFX.addClass('fadeInUp animated');
-        rightFX.addClass('fadeInRight animated');
+var wrapper = $('.wrapper'),
+    upper = $('.upper'),
+    leftFX = $('.upper .leftFX'),
+    rightFX = $('.upper .rightFX'),
+    leftFX2 = $('.upper .leftFX2'),
+    grayTape = $('.grayTape'),
+    primalForm = $('#primalForm'),
+    progress = $('.progress'),
+    subscribe = $('.grayTape button#subscribe'),
+    thanks = $('.thanks'),
+    w = wrapper.width(),
+    h = wrapper.height(),
+    gh = grayTape.height();
+    uh = h - gh;
 
-    }
+$(window).load(function() {
+    
+    upper.height(uh);
+    wrapper.fadeIn('medium');
+    leftFX.removeClass('hidden');
+    rightFX.removeClass('hidden');
+    leftFX.addClass('fadeInUp animated');
+    rightFX.addClass('fadeInRight animated');
     
     subscribe.click(verifyEmail);
     
@@ -81,40 +70,47 @@ $(window).load(function() {
         return false;
     }
     
-    function secondStep() {
-        //Transições de entreada do conteúdo no segundo passo
-        wrapper.removeClass('firstStep');
-        wrapper.addClass('secondStep');
-        
-        primalForm.addClass('fadeOutUp animated');
-        leftFX.addClass('fadeOutDown');
-        
-        leftFX2.removeClass('hidden');
-        leftFX2.addClass('fadeInLeft animated');
-        
-        progress.removeClass('hidden');
-        progress.addClass('fadeInUp animated');
-        
-        //Exibe/oculta barra de agradecimento no topo
-        thanks.addClass('show');
-        setTimeout(function() {
-            thanks.removeClass('show');
-        }, 4000);
-        
-        
-        //Contador de emails cadastrados
-        $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {
-            duration: 3000,
-            easing:'linear',
-            step: function() {
-                $('#incrementor').text(Math.floor(this.countNum));
-                $('.theBar').width($('#incrementor').data('qtd') * 2 + '%');
-            },
-            complete: function() {
-                $('#incrementor').text(this.countNum);
-            }
-        });    
-        //Evita o carregamento da página ao enviar o Email para o PHP
-        return false;
-    }
+    
 });
+
+function drawPage() {
+    
+}
+function introPage() {}
+
+function secondStep() {
+    //Transições de entreada do conteúdo no segundo passo
+    wrapper.removeClass('firstStep');
+    wrapper.addClass('secondStep');
+
+    primalForm.addClass('fadeOutUp animated');
+    leftFX.addClass('fadeOutDown');
+
+    leftFX2.removeClass('hidden');
+    leftFX2.addClass('fadeInLeft animated');
+
+    progress.removeClass('hidden');
+    progress.addClass('fadeInUp animated');
+
+    //Exibe/oculta barra de agradecimento no topo
+    thanks.addClass('show');
+    setTimeout(function() {
+        thanks.removeClass('show');
+    }, 4000);
+
+
+    //Contador de emails cadastrados
+    $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {
+        duration: 3000,
+        easing:'linear',
+        step: function() {
+            $('#incrementor').text(Math.floor(this.countNum));
+            $('.theBar').width($('#incrementor').data('qtd') * 2 + '%');
+        },
+        complete: function() {
+            $('#incrementor').text(this.countNum);
+        }
+    });    
+    //Evita o carregamento da página ao enviar o Email para o PHP
+    return false;
+}
