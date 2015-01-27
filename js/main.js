@@ -74,9 +74,9 @@ function verifyEmail() {
 function setItUp() {
     $.getJSON( 'registerEmail.php', function( json ) {
         var info = json[0];
-        console.log('deu de boas ---' + info.url);
         
-        placeCode.val(info.url);
+        window.history.pushState('Object', 'Escola do Sucesso', info.url);
+        placeCode.val(window.location.href);
         incrementor.data('qtd', info.subscribers)
         
         secondStep();
@@ -104,6 +104,8 @@ function secondStep() {
     setTimeout(function() {
         thanks.removeClass('show');
     }, 4000);
+    
+    placeCode.select();
 
     //Contador de emails cadastrados
     $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {

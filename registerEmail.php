@@ -1,4 +1,4 @@
 [{
-    "url": "http://escoladosucesso.com/asd",
+    "url": "?asd",
     "subscribers": "30"
 }]

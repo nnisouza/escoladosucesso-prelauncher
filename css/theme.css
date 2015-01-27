@@ -12,17 +12,19 @@
 .wrapper .upper .container .linkH input#placeCodeHere{
     border-color: #5a8244;
 }
+
 .wrapper .grayTape .progress h3,
 .wrapper .grayTape form#primalForm label{
     color: #5a8244;
 }
+
 .wrapper .thanks,
 .wrapper .grayTape form#primalForm button,
 .wrapper .grayTape .progress .progressBar .theBar #incrementor,
-.wrapper .grayTape .progress .progressBar .theBar{
+.wrapper .grayTape .progress .progressBar .theBar,
+.wrapper .upper .container .linkH input#placeCodeHere::selection{
     background-color: #5a8244;
 }
-
 .wrapper .grayTape form#primalForm svg path{
     fill: #5a8244;
 }
