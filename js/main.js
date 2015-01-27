@@ -1,11 +1,14 @@
-var wrapper = $('.wrapper'),
+var master = {window: {el: null, width: null, height: null}},
+    wrapper = $('.wrapper'),
     upper = $('.upper'),
     leftFX = $('.upper .leftFX'),
     rightFX = $('.upper .rightFX'),
     leftFX2 = $('.upper .leftFX2'),
     grayTape = $('.grayTape'),
     primalForm = $('#primalForm'),
+    placeCode = $('#placeCodeHere'),
     progress = $('.progress'),
+    incrementor = $('#incrementor'),
     subscribe = $('.grayTape button#subscribe'),
     thanks = $('.thanks'),
     w = wrapper.width(),
@@ -13,71 +16,75 @@ var wrapper = $('.wrapper'),
     gh = grayTape.height();
     uh = h - gh;
 
-$(window).load(function() {
-    
-    upper.height(uh);
+function calc() {
+    master.window.height = $(window).height();
+    $medida = master.window.height - 200;
+    upper.height($medida);
+}
+function introPage() {
     wrapper.fadeIn('medium');
     leftFX.removeClass('hidden');
     rightFX.removeClass('hidden');
     leftFX.addClass('fadeInUp animated');
     rightFX.addClass('fadeInRight animated');
-    
-    subscribe.click(verifyEmail);
-    
-    function verifyEmail() {
-        var email = $("#fsMail").val();
-  		if(email == '') {
-			$("#alertForm").html('Digite o seu email para continuar');
-			$("#alertForm").css("color", "#d31515");
-			$("#fsMail").select();
-            
-            //Evita a requisição AJAX caso o email não for inserido
-			return false;
-  		} else {
-			var atpos		= email.indexOf("@");
-			var dotpos		= email.lastIndexOf(".");
-			if(atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
-				$("#alertForm").html('Por favor, insira um E-mail válido.');
-				$("#alertForm").css("color", "#d31515");
-				$("#fsMail").select();
-                
-                //Evita a requisição AJAX caso o email inserido não for válido
-				return false;
-			}				
-  		}
-        
-        var dataString = '&email=' + email;
-		
-		subscribe.addClass('sending');
-		subscribe.attr('disabled','disabled');		
-        
-		$.ajax({  
-			type: "POST",  
-                //Cria esse arquivo PHP conforme tu preferir só precisa conter os RETURNS conforme utilizados abaixo
-				url: "registerEmail.php",  
-				data: dataString,  
-				success: function() {
-					secondStep();
-				},
-				error: function(){
-                    $("#alertForm").html('Houve um erro tremendo D:');
-                    $("#alertForm").css("color", "#ff0000");
-                    secondStep();
-				}
-		});
-        
-        //Evita o carregamento da página ao enviar o Email para o PHP
-        return false;
-    }
-    
-    
-});
-
-function drawPage() {
-    
 }
-function introPage() {}
+function drawPage() {
+    calc();
+    introPage();
+}
 
+function verifyEmail() {
+    var email = $("#fsMail").val();
+    if(email == '') {
+        $("#alertForm").html('Digite o seu email para continuar');
+        $("#alertForm").css("color", "#d31515");
+        $("#fsMail").select();
+        return false;
+    } else {
+        var atpos		= email.indexOf("@");
+        var dotpos		= email.lastIndexOf(".");
+        if(atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+            $("#alertForm").html('Por favor, insira um E-mail válido.');
+            $("#alertForm").css("color", "#d31515");
+            $("#fsMail").select();
+            return false;
+        }				
+    }
+
+    var dataString = '&email=' + email;
+
+    subscribe.addClass('sending');
+    subscribe.attr('disabled','disabled');		
+
+    $.ajax({  
+        type: "POST",  
+            url: "registerEmail.php",  
+            data: dataString,  
+            success: function() {
+                setItUp();
+            },
+            error: function(){
+                $("#alertForm").html('Houve um erro tremendo D:');
+                $("#alertForm").css("color", "#ff0000");
+            }
+    });
+    return false;
+}
+
+function setItUp() {
+    $.getJSON( 'registerEmail.php', function( json ) {
+        var info = json[0];
+        console.log('deu de boas ---' + info.url);
+        
+        placeCode.val(info.url);
+        incrementor.data('qtd', info.subscribers)
+        
+        secondStep();
+    })
+    .fail(function(){
+        alert('deu ruim');
+    });
+}
 function secondStep() {
     //Transições de entreada do conteúdo no segundo passo
     wrapper.removeClass('firstStep');
@@ -98,7 +105,6 @@ function secondStep() {
         thanks.removeClass('show');
     }, 4000);
 
-
     //Contador de emails cadastrados
     $({countNum: 0}).animate({countNum: $('#incrementor').data('qtd')}, {
         duration: 3000,
@@ -114,3 +120,11 @@ function secondStep() {
     //Evita o carregamento da página ao enviar o Email para o PHP
     return false;
 }
+
+function action() {
+    subscribe.click(verifyEmail);
+}
+
+$(window).load(drawPage);
+$(document).ready(action);
+$(window).resize(calc).trigger('resize');
